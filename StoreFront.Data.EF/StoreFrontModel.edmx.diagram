@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="902fdc10c29d4c84bd5f0474b6f55b6f" Name="Diagram1">
+        <EntityTypeShape EntityType="StoreFrontModel.Accessory" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.AccessoryType" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.Charger" Width="1.5" PointX="3.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.Color" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.Employee" Width="1.5" PointX="11" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.HeadPhoneStore" Width="1.5" PointX="6" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.HeadPhoneType" Width="1.5" PointX="3.75" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.Position" Width="1.5" PointX="8.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.Shipper" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.Speaker" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.SpeakersType" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.Stock" Width="1.5" PointX="3.75" PointY="16.875" IsExpanded="true" />
+        <AssociationConnector Association="StoreFrontModel.FK_Accessories_AccessoryType" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Accessories_Colors" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Accessories_Shippers" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_HeadPhoneStore_Chargers" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_HeadPhoneStore_Colors" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Speakers_Colors" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Employees_Position" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_HeadPhoneStore_HeadPhoneType" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_HeadPhoneStore_Shippers" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_HeadPhoneStore_Stock" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Speakers_Shippers" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Speakers_SpeakersType" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
