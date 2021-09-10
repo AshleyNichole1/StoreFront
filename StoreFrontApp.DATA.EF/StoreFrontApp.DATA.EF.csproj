@@ -56,6 +56,9 @@
     <Compile Include="Color.cs">
       <DependentUpon>StoreFrontModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ComplexType1.cs">
+      <DependentUpon>StoreFrontModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Employee.cs">
       <DependentUpon>StoreFrontModel.tt</DependentUpon>
     </Compile>
@@ -65,6 +68,7 @@
     <Compile Include="HeadPhoneType.cs">
       <DependentUpon>StoreFrontModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MetaData\StoreFrontMetaData.cs" />
     <Compile Include="Position.cs">
       <DependentUpon>StoreFrontModel.tt</DependentUpon>
     </Compile>

@@ -29,6 +29,7 @@ namespace StoreFrontApp.DATA.EF
         public string Weight { get; set; }
         public Nullable<decimal> Sales { get; set; }
         public int StockID { get; set; }
+        public string Image { get; set; }
     
         public virtual Charger Charger { get; set; }
         public virtual Color Color { get; set; }
