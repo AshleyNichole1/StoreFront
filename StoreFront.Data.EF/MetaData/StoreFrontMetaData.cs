@@ -7,9 +7,6 @@ using System.Threading.Tasks;
 
 namespace StoreFront.Data.EF/*.MetaData*/
 {
-    //class StoreFrontMetaData
-    //{
-    //}
 
 
     #region Accessory
@@ -17,15 +14,38 @@ namespace StoreFront.Data.EF/*.MetaData*/
 
     public class AccessoryMetadata
     {
+        [Required(ErrorMessage = "*Required")]
         public int AccessoryID { get; set; }
+
+        [Required(ErrorMessage = "*Required")]
         public int AccessoryType { get; set; }
+
+        [Required(ErrorMessage = "*Required")]
+        [Range(0, double.MaxValue, ErrorMessage = "Value must be greater than 0")]
+        [DisplayFormat(DataFormatString = "{0:c}")]
+        [Display(Name = "Price")]
         public decimal AccessoryPrice { get; set; }
+
         public Nullable<int> AccessoriesSold { get; set; }
+
         public Nullable<int> ColorID { get; set; }
+
+        [StringLength(100, ErrorMessage = "* Cannot exceed 100 characters")]
+        [Display(Name = "Description")]
+        [UIHint("MultilineText")]
         public string AccessoryDesrcp { get; set; }
+
         public Nullable<int> ShipperID { get; set; }
+
+        [StringLength(150, ErrorMessage = "* Cannot exceed 150 characters")]
+        [Display(Name = "Accessory")]
         public string AccessoryImage { get; set; }
+
+        [Range(0, double.MaxValue, ErrorMessage = "Value must be greater than 0")]
+        [DisplayFormat(DataFormatString = "{0:c}")]
+        [Display(Name = "Sales")]
         public Nullable<decimal> AccessorySales { get; set; }
+
         public Nullable<int> StockID { get; set; }
     }
 
@@ -37,14 +57,18 @@ namespace StoreFront.Data.EF/*.MetaData*/
 
     #endregion
 
-
     #region AccessoryType
 
     public class AccessoryTypeMetadata
     {
-
+        [Required(ErrorMessage = "*Required")]
         public int AccessoryType1 { get; set; }
+
+        [Required(ErrorMessage = "*Required")]
         public int AccsID { get; set; }
+
+        [Required(ErrorMessage = "*Required")]
+        [StringLength(50, ErrorMessage = "* Cannot exceed 50 characters")]
         public string AccessoryName { get; set; }
     }
 
@@ -56,9 +80,6 @@ namespace StoreFront.Data.EF/*.MetaData*/
 
 
     #endregion
-
-
-
 
     #region Charger   
 
@@ -167,6 +188,7 @@ namespace StoreFront.Data.EF/*.MetaData*/
     #region HeadPhoneStore
     public class HeadPhoneStoreMetadata
     {
+        [Required(ErrorMessage = "*Required")]
         public int HeadPhoneID { get; set; }
 
         [Required(ErrorMessage = "* Head Phone Type is required")]
@@ -329,26 +351,40 @@ namespace StoreFront.Data.EF/*.MetaData*/
 
     #endregion
 
-
-    #region   
-
-
-    #endregion    
-    
-    
     #region Speaker   
 
     public class SpeakerMetadata
     {
         public int SpeakerID { get; set; }
+
+        [Required(ErrorMessage = "* Required")]
         public int SpeakerType { get; set; }
+
+        [Range(0, double.MaxValue, ErrorMessage = "Value must be greater than 0")]
+        [DisplayFormat(DataFormatString = "{0:c}")]
+        [Display(Name = "Price")]
         public Nullable<decimal> SpeakerPrice { get; set; }
+
         public Nullable<int> SpkrsSold { get; set; }
+
         public Nullable<int> ColorID { get; set; }
+
+        [Required(ErrorMessage = "* Description is required")]
+        [StringLength(100, ErrorMessage = "* Cannot exceed 100 characters")]
+        [Display(Name = "Description")]
+        [UIHint("MultilineText")]
         public string SpkrDescription { get; set; }
+
         public Nullable<int> ShipperID { get; set; }
+
+        [StringLength(150, ErrorMessage = "* Cannot exceed 150 characters")]
         public string SpeakersImage { get; set; }
+
+        [Range(0, double.MaxValue, ErrorMessage = "Value must be greater than 0")]
+        [DisplayFormat(DataFormatString = "{0:c}")]
+        [Display(Name = "Sales")]
         public Nullable<decimal> SpkrSales { get; set; }
+
         public Nullable<int> StockID { get; set; }
 
         public virtual Color Color { get; set; }
@@ -362,15 +398,22 @@ namespace StoreFront.Data.EF/*.MetaData*/
         //this is typically empty, unless you need to create custom properties
     }
 
-#endregion
+    #endregion
 
     #region SpeakersType 
 
     public class SpeakersTypeMetadata
     {
-        public int ColorID { get; set; }
+
+        [Required(ErrorMessage = "* Required")]
         public int SpeakerType { get; set; }
+
+        [Required(ErrorMessage = "* Required")]
         public int SpkrID { get; set; }
+
+        [Required(ErrorMessage = "* Required")]
+        [StringLength(50, ErrorMessage = "* Cannot exceed 50 characters")]
+        [Display(Name = "Speaker")]
         public string SpkerName { get; set; }
 
     }
