@@ -1,0 +1,32 @@
+﻿@model StoreFront.Data.EF.HeadPhoneStore
+
+@* AJAX - Step 24 - Update form (modify html, add params to BeginForm()) *@
+@using (Html.BeginForm("AjaxEdit", "HeadPhoneStores1", FormMethod.Post, new { id = "HeadPhoneEditForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <table>
+        <tr>
+            @Html.HiddenFor(model => model.HeadPhoneID)
+            <td>
+                @Html.EditorFor(model => model.HeadPhoneID, new { htmlAttributes = new { @class = "form-control", style = "width:400px;" } })
+                @Html.ValidationMessageFor(model => model.HeadPhoneID, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.HeadPhoneType, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HeadPhoneType, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.HeadPhonePrice, new { htmlAttributes = new { @class = "form-control", style = "width: 65px; margin-right: 66px" } })
+                @Html.ValidationMessageFor(model => model.HeadPhonePrice, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Image)
+                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger", style = "margin-right: 126px" })
+            </td>
+            <td>
+                <input type="button" id="saveUpdate" value="Update Publisher" class="btn btn-primary" />
+            </td>
+        </tr>
+    </table>
+}

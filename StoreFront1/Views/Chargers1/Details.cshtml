@@ -1,0 +1,26 @@
+﻿@model StoreFront.Data.EF.Charger
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Charger</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Charge_type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Charge_type)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ChargerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

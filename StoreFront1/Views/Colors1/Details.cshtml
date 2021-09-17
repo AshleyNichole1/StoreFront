@@ -1,0 +1,29 @@
+﻿@model StoreFront.Data.EF.Color
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Color</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Shade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Shade)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (User.IsInRole("Admin,Employee"))
+    {
+        @:  @Html.ActionLink("Edit", "Edit", new { id = Model.ColorID }) |
+    }
+    @Html.ActionLink("Back to List", "Index")
+</p>

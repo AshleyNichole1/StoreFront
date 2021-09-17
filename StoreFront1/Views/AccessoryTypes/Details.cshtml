@@ -1,0 +1,34 @@
+﻿@model StoreFront.Data.EF.AccessoryType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AccessoryType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AccsID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccsID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccessoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccessoryName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AccessoryType1 }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

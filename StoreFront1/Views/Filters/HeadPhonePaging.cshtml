@@ -1,0 +1,140 @@
+﻿@*@model IEnumerable<StoreFront.Data.EF.HeadPhoneStore>*@
+@model PagedList.IPagedList<StoreFront.Data.EF.HeadPhoneStore>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "HeadPhonePaging";
+}
+
+
+<div class="row">
+    @using (Html.BeginForm("HeadPhonePaging", "Filters", FormMethod.Get))
+    {
+    <p>
+        Search: @Html.TextBox("SearchString", ViewBag.SearchString as string)
+        <input type="submit" value="Search" />
+        @Html.ActionLink("Reset", "HeadPhonePaging", "Filters", null, new { @class = "btn btn-primary" })
+    </p>
+
+    }
+</div>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("HeadPhonePaging", new { page, searchString = ViewBag.SearchString }))
+
+
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().HeadPhonePrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().isWireless)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().UnitsSold)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().isInOver)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().isMic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().isBlueTooth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Weight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Sales)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Charger.Charge_type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Color.Shade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().HeadPhoneType1.HPT_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Shipper.ShipperName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Stock.StockValue)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HeadPhonePrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isWireless)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitsSold)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isInOver)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isMic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isBlueTooth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sales)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Charger.Charge_type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color.Shade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HeadPhoneType1.HPT_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shipper.ShipperName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock.StockValue)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.HeadPhoneID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.HeadPhoneID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.HeadPhoneID })
+            </td>
+        </tr>
+    }
+
+</table>

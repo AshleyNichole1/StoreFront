@@ -1,0 +1,97 @@
+﻿@model IEnumerable<StoreFront.Data.EF.Accessory>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="customwrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@if (Request.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AccessoryPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccessoriesSold)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccessoryDesrcp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccessoryImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccessorySales)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StockID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccessoryType1.AccessoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Color.Shade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Shipper.ShipperName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccessoryPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccessoriesSold)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccessoryDesrcp)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.AccessoryImage)*@
+                <a href="@Url.Action("Details", new { id = item.AccessoryImage})" title="@item.AccessoryType1">
+                    <img src="~/Content/img/@item.AccessoryImage" alt="@item.AccessoryType1 cover image" style="max-height:100px; width:auto;" />
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccessorySales)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StockID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccessoryType1.AccessoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color.Shade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shipper.ShipperName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.AccessoryID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.AccessoryID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.AccessoryID })
+            </td>
+        </tr>
+    }
+
+</table>

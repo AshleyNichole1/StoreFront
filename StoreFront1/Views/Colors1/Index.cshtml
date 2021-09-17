@@ -1,0 +1,60 @@
+﻿@model IEnumerable<StoreFront.Data.EF.Color>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div id="customwrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Shade)
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Request.IsAuthenticated)
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shade)
+            </td>
+            <td>
+                @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                {
+                    @: @Html.ActionLink("Edit", "Edit", new { id = item.ColorID }) |
+                }
+
+                @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                {
+                    @: @Html.ActionLink("Details", "Details", new { id = item.ColorID }) |
+                }
+
+                @if (User.IsInRole("Admin"))
+                {
+                    @:  @Html.ActionLink("Delete", "Delete", new { id = item.ColorID })
+                }
+
+
+            </td>
+        </tr>
+    }
+
+</table>

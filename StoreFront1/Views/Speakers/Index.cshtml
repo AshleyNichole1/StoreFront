@@ -1,0 +1,97 @@
+﻿@model IEnumerable<StoreFront.Data.EF.Speaker>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="customwrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@if (Request.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SpeakerPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpkrsSold)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpkrDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpeakersImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpkrSales)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StockID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Color.Shade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Shipper.ShipperName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpeakersType.SpkerName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpeakerPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpkrsSold)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpkrDescription)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.SpeakersImage)*@
+                <a href="@Url.Action("Details", new { id = item.SpeakersImage })" title="@item.SpeakerType">
+                    <img src="~/Content/img/@item.SpeakersImage" alt="@item.SpeakerType cover image" style="max-height:100px; width:auto;" />
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpkrSales)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StockID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color.Shade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shipper.ShipperName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpeakersType.SpkerName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.SpeakerID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.SpeakerID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.SpeakerID })
+            </td>
+        </tr>
+    }
+
+</table>

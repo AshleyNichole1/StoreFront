@@ -1,0 +1,34 @@
+﻿@model StoreFront.Data.EF.SpeakersType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SpeakersType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SpkrID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpkrID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpkerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpkerName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SpeakerType }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

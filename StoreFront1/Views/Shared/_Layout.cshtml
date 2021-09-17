@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title - StoreFront</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href="~/content/img/favicon.png" rel="icon">
+    <link href="~/content/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="~/Content/css/Custom.css" rel="stylesheet" />
+
+    <script src="https://kit.fontawesome.com/1f94d5f4f0.js" crossorigin="anonymous"></script>
+
+    <!-- Google Fonts -->
+    @*<link href="~/content/https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">*@
+
+    <!-- Bootstrap CSS File -->
+    <link href="~/content/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="~/content/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="~/content/css/style.css" rel="stylesheet">
+
+    <!--PagedList Stylesheet-->
+    <link href="~/Content/css/PagedList.css" rel="stylesheet" />
+
+    <!--jQueryDataTables-->
+    <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css" rel="stylesheet" />
+
+    <!--ADDED jQueryUI CSS CDN - note: themenames are swappable.-->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css">
+
+
+    <!-- =======================================================
+      Template Name: Instant
+      Template URL: https://templatemag.com/instant-bootstrap-personal-template/
+      Author: TemplateMag.com
+      License: https://templatemag.com/license/
+    ======================================================= -->
+</head>
+
+
+@*//Lock down nav bar, if you are not authorized then you can not see the button
+    //go to _layout
+    //  @if (Request.IsAuthenticated)
+        //move @url.action tag into {}
+        //Next go to index of whatever page
+        //lock down buttons like create edit delete
+        //@if (User.IsInRole("Admin"))
+        //{
+        //    <p>
+        //        @Html.ActionLink("Create New", "Create")
+        //    </p>
+        //}
+        //We moved the p tag into the if statement.
+        //Example on author controller and author index
+        You do not need to make another if statement to hide nav keys. You can put them into one see MVC _layout request.isauthenticated
+        we moved Admin functions into an if statement only allowing admins to see.
+        You will need to add an employee function
+*@
+
+
+
+<body>
+
+    <!-- Static navbar -->
+    <div class="navbar navbar-default" role="navigation">
+        @*navbar-fixed-top*@
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index","Home")"><i class="fas fa-headphones"></i>HEADPHONES+</a>
+            </div>
+            <div class="navbar-collapse collapse">
+
+                <nav id="menu2">
+                    <ul class="nav navbar-nav navbar-right">
+                        @* All *@
+                        <li><a href="@Url.Action("Index","Home")" class="smoothscroll">Store</a></li>
+                        <li><a href="@Url.Action("Index","HeadPhoneStores1")" class="smoothscroll">Head Phones</a></li>   @*class="active"*@
+                        @*<li><a href="@Url.Action("Index","Speakers")" class="smoothscroll">Speakers</a></li>
+                            <li><a href="@Url.Action("Index","Accessories")" class="smoothscroll">Accessories</a></li>*@
+                        <li><a href="@Url.Action("Contact","Home")" class="smoothscroll">Contact</a></li>
+                        <li><a href="@Url.Action("HeadPhonePaging","Filters")" class="smoothscroll">HeadPhone+</a></li>
+                        
+
+                        @*@if (Request.IsAuthenticated)
+                            {
+                                <li><a href="@Url.Action("Index","HeadPhoneStores1")" class="smoothscroll">HPS</a></li>
+
+                            }*@
+
+
+                        @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                        {
+                            <li><a href="@Url.Action("Index","Chargers1")" class="smoothscroll">Chargers</a></li>
+                            <li><a href="@Url.Action("Index","Employees1")" class="smoothscroll">Employees</a></li>
+                            <li><a href="@Url.Action("Index","Positions1")" class="smoothscroll">Positions</a></li>
+                            <li><a href="@Url.Action("Index","Colors1")" class="smoothscroll">Colors</a></li>
+                            <li><a href="@Url.Action("Index","HeadPhoneTypes1")" class="smoothscroll">HeadPhoneType</a></li>
+
+
+                        }
+
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li><a href="@Url.Action("Index","Shippers1")" class="smoothscroll">Shippers</a></li>
+
+                            <li><a href="@Url.Action("Index","RolesAdmin")" class="smoothscroll">Roles</a></li>
+                            <li><a href="@Url.Action("Index", "UsersAdmin")" class="smoothscroll">Users</a></li>
+
+
+
+                        }
+
+
+
+                        @Html.Partial("_LoginPartial")
+
+                        <li>
+                            @{
+                                Dictionary<int, StoreFront1.Models.CartItemViewModel> shoppingCart =
+                                    (Dictionary<int, StoreFront1.Models.CartItemViewModel>)Session["cart"];
+
+
+                                int nbrItems = 0;
+
+                                if (shoppingCart != null)
+                                {
+                                    foreach (var item in shoppingCart)
+                                    {
+                                        nbrItems += item.Value.Qty;
+                                    }
+                                }
+                            }
+
+                            <a href="@Url.Action("Index","ShoppingCart")"><i class="fas fa-cart-arrow-down"></i>@nbrItems</a>
+                        </li>
+
+
+                    </ul>
+                </nav>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+
+
+    <div id="main" class="section">
+        <div class="container">
+
+            <div id="MessageDisplay" class="row">
+                <div class="col-md-10 col-md-offset-1" id="MessageContent"></div>
+            </div>
+
+            <div class="row">
+
+            </div>
+        </div>
+    </div>
+    @RenderBody()
+
+    @*<div class="navbar navbar-default" role="navigation">*@
+    @*navbar-fixed-top*@
+    <div class="container">
+        <div class="navbar-header">
+            <div id="sidebar" class="container">
+                <div class="row centered">
+                    <nav id="menu">
+                        <ul>
+                            <li class="col-lg-2">
+                                <span class="opener">LINKS</span>
+                                <ul>
+                                    <li><a href="@Url.Action("Index","Accessories")">Accessories</a></li>
+                                    <li><a href="@Url.Action("Index","Speakers")">Speakers</a></li>
+
+                                </ul>
+                            </li>
+                            <li class="col-lg-2"><a href="@Url.Action("Contact","Home")">Help</a></li>
+                            <li class="col-lg-2">1234 SW Whatever St.<br />Blue Springs, MO 64014</li>
+
+                            <li class="col-lg-2"><a href="@Url.Action("Index","Home")"><i class="fas fa-cart-arrow-down"></i></a></li>
+
+                        </ul>
+
+                    </nav>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    @*</div>*@
+    <div id="copyrights">
+        <div class="container">
+            <p>
+                &copy; Copyrights <strong>Instant</strong>. All Rights Reserved
+            </p>
+            <div class="credits">
+                <!--
+                  You are NOT allowed to delete the credit link to TemplateMag with free version.
+                  You can delete the credit link only if you bought the pro version.
+                  Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/instant-bootstrap-personal-template/
+                  Licensing information: https://templatemag.com/license/
+                -->
+                Created with Instant template by <a href="https://templatemag.com/">TemplateMag</a>
+            </div>
+        </div>
+    </div>
+    <!-- / copyrights -->
+    <!-- JavaScript Libraries -->
+    @*<script src="~/Content/vendor/jquery/jquery.min.js"></script>
+        <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>*@
+
+    <script src="~/content/lib/jquery/jquery.min.js"></script>
+    <script src="~/content/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/content/lib/php-mail-form/validate.js"></script>
+
+
+    <!--jQuery DataTables-->
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
+
+
+    <!--ADDEDjQuery UI CDN-->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- ADDED jQuery Ajax CDN-->
+    <script src="https://cdn.jsdelivr.net/jquery.ajax.unobtrusive/3.2.4/jquery.unobtrusive-ajax.min.js"></script>
+
+
+    <script src="~/Content/js/Custom.js"></script>
+    @*Template Main Javascript File*@
+    @*<script src="js/main.js"></script>*@
+
+    @RenderSection("Scripts", false)
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+﻿@model IEnumerable<StoreFront.Data.EF.HeadPhoneStore>
+
+@{
+    ViewBag.Title = "HeadPhoneQS";
+}
+
+<h2>HeadPhoneQS</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+
+
+<div class="row panel panel-primary">
+    <form method="get" action="~/Filters/HeadPhoneQS" class="form-horizontal pull-left">
+        <div class="form-group">
+            <div class="col-xs-offset-1 col-xs-11 col-sm-2">
+                <label for="searchFilter">Search</label>
+            </div>
+            <div class="col-xs-offset-1 col-xs-11 col-sm-5">
+                <input type="text" name="searchFilter" />
+            </div>
+            <div class="col-xs-offset-1 col-xs-11 col-sm-2">
+                <input type="submit" value="Go!" class="btn btn-primary" />
+                @Html.ActionLink("Reset", "HeadPhoneQS", "Filters", null, new { @class = "btn btn-danger" })
+            </div>
+
+        </div>
+    </form>
+</div>
+
+
+@if (Model.Count() >0)
+{
+    
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HeadPhonePrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isWireless)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitsSold)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isInOver)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isMic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isBlueTooth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Weight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sales)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Charger.Charge_type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Color.Shade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HeadPhoneType1.HPT_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Shipper.ShipperName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock.StockValue)
+        </th>
+        @*<th></th>*@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HeadPhonePrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isWireless)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitsSold)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isInOver)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isMic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isBlueTooth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Weight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sales)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Charger.Charge_type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Color.Shade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HeadPhoneType1.HPT_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Shipper.ShipperName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stock.StockValue)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.HeadPhoneID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.HeadPhoneID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.HeadPhoneID })
+        </td>*@
+    </tr>
+}
+
+</table>
+}
+
+else
+{
+<p>
+    Sorry, no results found. Please reset and try again.
+</p>
+
+}

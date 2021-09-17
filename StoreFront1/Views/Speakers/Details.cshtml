@@ -1,0 +1,97 @@
+﻿@model StoreFront.Data.EF.Speaker
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Speaker</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SpeakerPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpeakerPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpkrsSold)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpkrsSold)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpkrDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpkrDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpeakersImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpeakersImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpkrSales)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpkrSales)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StockID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StockID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Color.Shade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Color.Shade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Shipper.ShipperName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Shipper.ShipperName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpeakersType.SpkerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpeakersType.SpkerName)
+        </dd>
+
+    </dl>
+    @using (Html.BeginForm("AddToCart","ShoppingCart",new { speakerId = Model.SpeakerID}, FormMethod.Post, new { @class = "text-center"}))
+    {
+        <span class="label">Quantity: </span>
+        @Html.TextBox("Qty",1,new { @class = "form-control", style = "max-width: 50px; display: inline;"})
+        <input type="submit" value="Add to Cart" class="btn btn-primary" />
+
+    }
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SpeakerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

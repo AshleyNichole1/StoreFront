@@ -1,0 +1,183 @@
+﻿@model StoreFront.Data.EF.HeadPhoneStore
+
+@{
+    ViewBag.Title = "Head Phones Details";
+}
+
+
+
+
+<div id="customwrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@if (Request.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
+
+    <div>
+        <h4>HeadPhoneStore</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.HeadPhonePrice)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HeadPhonePrice)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.isWireless)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.isWireless)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UnitsSold)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UnitsSold)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.isInOver)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.isInOver)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.isMic)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.isMic)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.isBlueTooth)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.isBlueTooth)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Weight)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Weight)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Sales)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Sales)
+            </dd>
+
+            <dt>
+
+                @Html.DisplayNameFor(model => model.Image)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Image)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Charger.Charge_type)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Charger.Charge_type)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Color.Shade)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Color.Shade)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.HeadPhoneType1.HPT_ID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HeadPhoneType1.HPT_ID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Shipper.ShipperName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Shipper.ShipperName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Stock.StockValue)
+            </dt>
+
+
+            <dd>
+                @Html.DisplayFor(model => model.Stock.StockValue)
+            </dd>
+
+        </dl>
+
+
+        <div class="col-md-6">
+            <img src="~/Content/img/@Model.Image" alt="HeadPhone" title="@Model.Image" />
+        </div>
+
+
+        @using (Html.BeginForm("AddToCart", "ShoppingCart", new { headPhoneId = Model.HeadPhoneID }, FormMethod.Post, new { @class = "text-center" }))
+        {
+            <span class="label">Quantity: </span>
+            @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width: 50px; display: inline;" })
+            <input type="submit" value="Add to Cart" class="btn btn-primary" />
+
+        }
+
+
+    </div>
+
+
+<p>
+
+    @if (User.IsInRole("Admin,Employee"))
+    {
+        @:   @Html.ActionLink("Edit", "Edit", new { id = Model.HeadPhoneID }) ||
+    }
+
+
+    @Html.ActionLink("Back to List", "Index")
+</p>

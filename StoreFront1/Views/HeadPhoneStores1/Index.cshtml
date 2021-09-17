@@ -1,0 +1,325 @@
+﻿@model IEnumerable<StoreFront.Data.EF.HeadPhoneStore>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div id="customwrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@if (Request.IsAuthenticated)
+{
+    <p class="row">
+        <button id="toggleHeadPhoneCreate" class="btn btn-primary text-right pull-left">Add New</button>
+    </p>
+
+    @*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>*@
+
+
+    <div id="HeadPhoneCreate">
+        @Html.Partial("HeadPhoneCreate", new StoreFront.Data.EF.HeadPhoneStore())
+
+    </div>
+}
+
+<table class="table" id="HeadPhoneTable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HeadPhonePrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isWireless)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.UnitsSold)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.isInOver)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isMic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isBlueTooth)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>*@
+        @*<th>
+                @Html.DisplayNameFor(model => model.Sales)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Charger.Charge_type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Color.Shade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HeadPhoneType1.HPT_ID)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Shipper.ShipperName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock.StockValue)
+            </th>*@
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr id="HeadPhone-@item.HeadPhoneID">
+            <th>
+                @*@Html.DisplayNameFor(model => model.Image)*@
+                <a href="@Url.Action("Details", new { id = item.Image })" title="@item.HeadPhoneType">
+                    <img src="~/Content/img/@item.Image" alt="@item.HeadPhoneType cover image" style="max-height:100px; width:auto;" />
+                </a>
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.HeadPhonePrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isWireless)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.UnitsSold)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.isInOver)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isMic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isBlueTooth)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Weight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sales)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Charger.Charge_type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color.Shade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HeadPhoneType1.HPT_ID)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Shipper.ShipperName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stock.StockValue)
+                </td>*@
+
+            <td>
+                @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                {
+                    @*@: @Html.ActionLink("Edit", "Edit", new { id = item.HeadPhoneID }) |*@
+                    <a href="" class="EditLink" id="@item.HeadPhoneID">Edit</a>
+
+                }
+
+
+                @*@if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+        {
+            @: @Html.ActionLink("Details", "Details", new { id = item.HeadPhoneID }) |
+        }*@
+                <a href="" class="DetailsLink" id="@item.HeadPhoneID">Details</a>
+
+
+                @if (User.IsInRole("Admin"))
+                {
+                    @*@: @Html.ActionLink("Delete", "Delete", new { id = item.HeadPhoneID })*@
+
+                    @Ajax.ActionLink("Delete","AjaxDelete","HeadPhones", new { id = item.HeadPhoneID},
+    new AjaxOptions
+{
+    HttpMethod = "POST",
+    Confirm = "Are you sure you want to delete this item?",
+    OnSuccess = "deleteConfirmed",
+    OnFailure = "deleteFailed"
+});
+
+
+                }
+
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div id="HeadPhoneDetails"></div>
+
+
+@section scripts{
+    <script>
+       
+        function deleteConfirmed(response, status, data) {
+           
+            var rowId = "#HeadPhone-" + response.id;
+            $("#HeadPhoneTable").find(rowId).remove();
+
+            
+            $("#MessageContent").html("<div class='alert alert-success'>" + response.message + "<div>");
+        }
+
+        function deleteFailed(response, status, data) {
+            $("#MessageContent").html("<div class='alert alert-danger'>Delete unsuccessful.</div>")
+        }
+
+       
+        $('a.DetailsLink').click(function (e) {
+            e.preventDefault();
+
+            $("#HeadPhoneDetails").data('hpId', $(this).attr('id'))
+                .dialog({
+                  
+                    width: 400,
+                    height: 200,
+                    open: function () {
+                        var headID = $(this).data('hpId');
+                        $(this).load("/HeadPhones/HeadPhoneDetails/" + hpID);
+                    },
+                    title: "HeadPhone Details",
+                    modal: true,
+                    resizable: false
+
+                });
+        });
+
+      
+        $("#HeadPhoneCreate").hide();
+        $("#toggleHeadPhoneCreate").click(function () {
+            $("#HeadPhoneCreate").toggle();
+
+
+        });
+
+    
+        $("#HeadPhoneCreateForm").submit(function (e) {
+            var formData = $(this).serializeArray();
+            e.preventDefault();
+
+            $.ajax({
+                url: "/HeadPhoneStores/AjaxCreate",
+                type: "POST",
+                data: formData,
+                dataType: "json",
+                error: function (e) {
+                    $("#MessageContent").html("<div class='alert alert-danger'>Error.</div>")
+                },
+                success: function (head) {
+                    $("#MessageContent").html("<div class='alert alert-success'>Item added!</div>")
+                    $("#HeadPhoneCreateForm")[0].reset();
+                    $(function () {
+                        var row = '<tr><td>' + head.Sales
+                            + '</td><td>' + head.HeadPhonePrice
+                            + '</td><td>' + head.Description
+                            + '</td><td>' + (head.IsActive ? '<input type="checkbox" disabled="disabled" checked="checked" />' :
+                                '<input type="checkbox" disabled="disabled" />')
+                            + '</td><td>Refresh to view options</td></tr>';
+                        $("#HeadPhoneTable").append(row);
+                    });
+                }
+            });
+        });
+
+
+
+        //********************* AJAX EDIT ************************** //
+        var originalContent = null; 
+
+        $("a.EditLink").click(function (e) {
+            e.preventDefault();
+            var headphoneID = $(this).attr("id");
+
+            var row = $("#HeadPhone-" + headphoneID).children();
+
+            originalContent = {
+                headId: headphoneID,
+               
+            };
+            console.log(originalContent);
+
+            $.get("/HeadPhoneStores1/HeadPhoneEdit/" + publisherID, function (data) {
+                $("#HeadPhone-" + headphoneID).replaceWith(
+                    '<tr id="HeadPhone-' + headphoneID + '"><td colspan="5">' + data + '</td></tr>'
+                );
+            });
+        });
+
+        $(document).on("click", "#saveUpdate", function (e) {
+            var formData = $("#HeadPhoneEditForm").serializeArray();
+          
+            console.log(formData);
+            $('#MessageContent').html("<div class='alert alert-info'>Please Wait...</div>");
+
+            $.ajax({
+                url: "/HeadPhones/AjaxEdit", 
+                type: "POST",
+                data: formData,
+                dataType: "json",
+                success: function (data) {
+                
+                    $('#MessageContent').html("<div class='alert alert-success'>Your Record was Successfully Updated!</div>");
+                    $('#HeadPhoneEditForm')[0].reset();
+
+                    $(function () {
+                        var row = '<tr><td>' + data.PublisherName +
+
+                            (data.IsActive
+                                ? '<input type="checkbox" disabled="disabled" checked="checked" />'
+                                : '<input type="checkbox" disabled="disabled" />') +
+                            '</td><td>Refresh to view options</td></tr>';
+
+                        $('#HeadPhone-' + data.headphoneID).replaceWith(row);
+                    });
+                   
+                },
+                error: function (e) {
+                    $('#MessageContent').html("<div class='alert alert-warning'>There was an error. Please try again or contact the site administrator.</div>");
+                    $(function () {
+                        var row = '<tr id="Publisher-' + originalContent.headId + '"> <td>' +                   
+                            '</td><td>' +
+                            (originalContent.IsActive
+                                ? '<input type="checkbox" disabled="disabled" checked="checked" />'
+                                : '<input type="checkbox" disabled="disabled" />') +
+                            '</td><td>Refresh to view options</td></tr>';
+
+                        $('#HeadPhone-' + data.headphoneID).replaceWith(row);
+                    });
+                }
+            });
+        });
+
+
+    </script>
+
+}

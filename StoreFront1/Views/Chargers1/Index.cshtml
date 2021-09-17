@@ -1,0 +1,80 @@
+﻿@model IEnumerable<StoreFront.Data.EF.Charger>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*//Lock down nav bar, if you are not authorized then you can not see the button
+    //go to _layout
+    //  @if (Request.IsAuthenticated)
+        //move @url.action tag into {}
+        //Next go to index of whatever page
+        //lock down buttons like create edit delete
+        //@if (User.IsInRole("Admin"))
+        //{
+        //    <p>
+        //        @Html.ActionLink("Create New", "Create")
+        //    </p>
+        //}
+        //We moved the p tag into the if statement.
+        //Example on author controller and author index*@
+
+<div id="customwrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Charge_type)
+        </th>
+        <th></th>
+    </tr>
+
+
+    @if (Request.IsAuthenticated)
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
+
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Charge_type)
+            </td>
+            <td>
+                @* add @if (User.IsInRole("Admin")){paste the edit action link here} and add a span tag before action link and after | or @: before action link see authors index for example *@
+                @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                {
+                    @: @Html.ActionLink("Edit", "Edit", new { id = item.ChargerID }) |
+                }
+
+                @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                {
+                    @: @Html.ActionLink("Details", "Details", new { id = item.ChargerID }) |
+                }
+
+                @if (User.IsInRole("Admin"))
+                {
+                    @: @Html.ActionLink("Delete", "Delete", new { id = item.ChargerID })
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@* If we want customers and admins to see details but not anonymous  @if (User.IsInRole("Admin") || User.IsInRole("Customer")) then follow same process of moving details into the {} *@
