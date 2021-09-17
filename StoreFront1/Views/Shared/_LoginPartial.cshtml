@@ -1,28 +1,63 @@
 ﻿@using Microsoft.AspNet.Identity
+@using StoreFront.Data.EF
+
+@{
+    int location = User.Identity.GetUserName().IndexOf("@");
+
+    StoreFrontEntities1 db = new StoreFrontEntities1();
+    string userId = User.Identity.GetUserId();
+
+    UserDetail currentUser = db.UserDetails.Find(userId);
+
+    string userFN = "Guest";
+    string favColor = "#cccccc";
+
+    if (currentUser != null)
+    {
+        userFN = currentUser.FristName;
+        favColor = currentUser.FavoriteColor;
+    }
+}
+
 @if (Request.IsAuthenticated)
+
 {
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+
+        <li>
+            @Html.AntiForgeryToken()
+            @Html.ActionLink("Hello " + userFN + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", style = $"color: {favColor}; text-shadow: 1px 1px #000;" })
+        </li>
+
+        <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+    }
+
+}
 
 
-    <!--You will need to fix the layout here-->
+
+@*< !--You will need to fix the layout here-->
 
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-        @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
 
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li>
-            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-            {
-               
-                <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-            }
-        </li>
+
+    <li>
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+
+
+            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+        }
+    </li>
     }
-}
+    }*@
+
 else
 {
+
     <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
     <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
 

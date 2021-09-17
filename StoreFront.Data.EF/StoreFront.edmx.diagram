@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b3178dc360df49bbb9361044202da30c" Name="Diagram1" ZoomLevel="55">
+      <Diagram DiagramId="b3178dc360df49bbb9361044202da30c" Name="Diagram1" ZoomLevel="72">
         <EntityTypeShape EntityType="StoreFrontModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="StoreFrontModel.Accessory" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="StoreFrontModel.AccessoryType" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
@@ -38,6 +38,8 @@
         <AssociationConnector Association="StoreFrontModel.FK_Speakers_Shippers" ManuallyRouted="false" />
         <AssociationConnector Association="StoreFrontModel.FK_Speakers_SpeakersType" ManuallyRouted="false" />
         <AssociationConnector Association="StoreFrontModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="StoreFrontModel.UserDetail" Width="1.5" PointX="13.25" PointY="6.375" />
+        <AssociationConnector Association="StoreFrontModel.FK_UserDetails_AspNetUsers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

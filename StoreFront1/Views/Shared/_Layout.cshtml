@@ -84,50 +84,52 @@
             </div>
             <div class="navbar-collapse collapse">
 
-                <nav id="menu2">
+                <nav id="menu">
                     <ul class="nav navbar-nav navbar-right">
+
+
                         @* All *@
                         <li><a href="@Url.Action("Index","Home")" class="smoothscroll">Store</a></li>
                         <li><a href="@Url.Action("Index","HeadPhoneStores1")" class="smoothscroll">Head Phones</a></li>   @*class="active"*@
-                        @*<li><a href="@Url.Action("Index","Speakers")" class="smoothscroll">Speakers</a></li>
-                            <li><a href="@Url.Action("Index","Accessories")" class="smoothscroll">Accessories</a></li>*@
+
                         <li><a href="@Url.Action("Contact","Home")" class="smoothscroll">Contact</a></li>
                         <li><a href="@Url.Action("HeadPhonePaging","Filters")" class="smoothscroll">HeadPhone+</a></li>
-                        
 
-                        @*@if (Request.IsAuthenticated)
-                            {
-                                <li><a href="@Url.Action("Index","HeadPhoneStores1")" class="smoothscroll">HPS</a></li>
-
-                            }*@
+                        <li class="col-lg-2">
+                            <span class="opener">Welcome!</span>
+                            <ul>
 
 
-                        @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
-                        {
-                            <li><a href="@Url.Action("Index","Chargers1")" class="smoothscroll">Chargers</a></li>
-                            <li><a href="@Url.Action("Index","Employees1")" class="smoothscroll">Employees</a></li>
-                            <li><a href="@Url.Action("Index","Positions1")" class="smoothscroll">Positions</a></li>
-                            <li><a href="@Url.Action("Index","Colors1")" class="smoothscroll">Colors</a></li>
-                            <li><a href="@Url.Action("Index","HeadPhoneTypes1")" class="smoothscroll">HeadPhoneType</a></li>
+                                @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                                {
+                                    <li><a href="@Url.Action("Index","Chargers1")" class="smoothscroll">Chargers</a></li>
+                                    <li><a href="@Url.Action("Index","Employees1")" class="smoothscroll">Employees</a></li>
+                                    <li><a href="@Url.Action("Index","Positions1")" class="smoothscroll">Positions</a></li>
+                                    <li><a href="@Url.Action("Index","Colors1")" class="smoothscroll">Colors</a></li>
+                                    <li><a href="@Url.Action("Index","HeadPhoneTypes1")" class="smoothscroll">HeadPhoneType</a></li>
 
 
-                        }
+                                }
 
 
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <li><a href="@Url.Action("Index","Shippers1")" class="smoothscroll">Shippers</a></li>
-
-                            <li><a href="@Url.Action("Index","RolesAdmin")" class="smoothscroll">Roles</a></li>
-                            <li><a href="@Url.Action("Index", "UsersAdmin")" class="smoothscroll">Users</a></li>
+                                @if (User.IsInRole("Admin"))
+                                {
 
 
+                                    <li><a href="@Url.Action("Index","Shippers1")" class="smoothscroll">Shippers</a></li>
 
-                        }
+                                    <li><a href="@Url.Action("Index","RolesAdmin")" class="smoothscroll">Roles</a></li>
+                                    <li><a href="@Url.Action("Index", "UsersAdmin")" class="smoothscroll">Users</a></li>
 
 
 
-                        @Html.Partial("_LoginPartial")
+                                }
+
+                                @Html.Partial("_LoginPartial")
+
+
+                            </ul>
+                        </li>
 
                         <li>
                             @{

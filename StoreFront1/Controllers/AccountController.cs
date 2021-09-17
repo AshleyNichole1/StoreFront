@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using StoreFront.Data.EF;
 
 namespace StoreFrontApp.UI.MVC.Controllers
 {
@@ -16,7 +17,7 @@ namespace StoreFrontApp.UI.MVC.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -162,12 +163,27 @@ namespace StoreFrontApp.UI.MVC.Controllers
                     //return View("DisplayEmail");
                     #endregion
                     //Customer role 
-                    
-                    UserManager.AddToRole(user.Id, "Customer");
 
-                    //Redirect after register 
-                    return RedirectToAction("Login");
+                    //UserManager.AddToRole(user.Id, "Customer");
 
+                    ////Redirect after register 
+                    //return RedirectToAction("Login");
+                    #region UserDetails
+
+                 
+                    StoreFrontEntities1 db = new StoreFrontEntities1();
+
+                    UserDetail ud = new UserDetail();
+                    ud.UserId = user.Id;
+                    ud.FristName = model.FirstName;
+                    ud.LastName = model.LastName;
+                    ud.FavoriteColor = model.FavoriteColor;
+
+                    db.UserDetails.Add(ud);
+                    db.SaveChanges();
+
+                    return View("Login");
+                    #endregion
                 }
                 AddErrors(result);
             }

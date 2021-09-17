@@ -205,7 +205,7 @@
                     height: 200,
                     open: function () {
                         var headID = $(this).data('hpId');
-                        $(this).load("/HeadPhones/HeadPhoneDetails/" + hpID);
+                        $(this).load("/HeadPhoneStores1/HeadPhoneDetails/" + headID);
                     },
                     title: "HeadPhone Details",
                     modal: true,
@@ -268,7 +268,7 @@
             };
             console.log(originalContent);
 
-            $.get("/HeadPhoneStores1/HeadPhoneEdit/" + publisherID, function (data) {
+            $.get("/HeadPhoneStores1/HeadPhoneEdit/" + headphoneID, function (data) {
                 $("#HeadPhone-" + headphoneID).replaceWith(
                     '<tr id="HeadPhone-' + headphoneID + '"><td colspan="5">' + data + '</td></tr>'
                 );
@@ -292,8 +292,10 @@
                     $('#HeadPhoneEditForm')[0].reset();
 
                     $(function () {
-                        var row = '<tr><td>' + data.PublisherName +
-
+                        var row = '<tr><td>' + data.headphoneID +
+                            '</td><td>' + data.Description +
+                            '</td><td>' + data.HeadPhonePrice +
+                           
                             (data.IsActive
                                 ? '<input type="checkbox" disabled="disabled" checked="checked" />'
                                 : '<input type="checkbox" disabled="disabled" />') +
@@ -306,7 +308,7 @@
                 error: function (e) {
                     $('#MessageContent').html("<div class='alert alert-warning'>There was an error. Please try again or contact the site administrator.</div>");
                     $(function () {
-                        var row = '<tr id="Publisher-' + originalContent.headId + '"> <td>' +                   
+                        var row = '<tr id="HeadPhone-' + originalContent.headId + '"> <td>' +                   
                             '</td><td>' +
                             (originalContent.IsActive
                                 ? '<input type="checkbox" disabled="disabled" checked="checked" />'
