@@ -14,72 +14,81 @@
     </div>
 </div>
 
-@if (Request.IsAuthenticated)
-{
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-}
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
 
-
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ShipperName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Adress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Zip)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShipperName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Adress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Zip)
-            </td>
-            <td>
-
-                @if (User.IsInRole("Admin"))
+                @if (Request.IsAuthenticated)
                 {
-                    @: @Html.ActionLink("Edit", "Edit", new { id = item.ShipperID }) |
+                    <p>
+                        @Html.ActionLink("Create New", "Create")
+                    </p>
                 }
 
-                @if (User.IsInRole("Admin"))
-                {
-                    @: @Html.ActionLink("Details", "Details", new { id = item.ShipperID }) |
-                }
 
-                @if (User.IsInRole("Admin"))
-                {
-                    @: @Html.ActionLink("Delete", "Delete", new { id = item.ShipperID })
-                }
 
-            </td>
-        </tr>
-    }
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ShipperName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Adress)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.City)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.State)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Zip)
+                        </th>
+                        <th></th>
+                    </tr>
 
-</table>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ShipperName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Adress)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.City)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.State)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Zip)
+                            </td>
+                            <td>
+
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    @: @Html.ActionLink("Edit", "Edit", new { id = item.ShipperID }) |
+                                }
+
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    @: @Html.ActionLink("Details", "Details", new { id = item.ShipperID }) |
+                                }
+
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    @: @Html.ActionLink("Delete", "Delete", new { id = item.ShipperID })
+                                }
+
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

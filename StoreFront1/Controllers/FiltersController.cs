@@ -63,7 +63,7 @@ namespace StoreFront1.Controllers
             #endregion
 
            
-            return View(headphone.ToPagedList(page, pageSize));
+            return View(headphone.ToList());
         }
 
     }

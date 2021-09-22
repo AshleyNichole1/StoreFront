@@ -5,28 +5,33 @@
 {
     @Html.AntiForgeryToken()
 
-    <table>
+    <table id="edit">
         <tr>
             @Html.HiddenFor(model => model.HeadPhoneID)
             <td>
+                @Html.LabelFor(model => model.HeadPhoneID)
                 @Html.EditorFor(model => model.HeadPhoneID, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.HeadPhoneID, "", new { @class = "text-danger" })
             </td>
             <td>
+                @Html.LabelFor(model => model.ColorID)
                 @Html.EditorFor(model => model.ColorID, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ColorID, "", new { @class = "text-danger" })
             </td>
 
             <td>
-                @Html.EditorFor(model => model.HeadPhoneID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.LabelFor(model => model.Description)
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </td>
 
             <td>
+                @Html.LabelFor(model => model.HeadPhonePrice)
                 @Html.EditorFor(model => model.HeadPhonePrice, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.HeadPhonePrice, "", new { @class = "text-danger" })
             </td>
             <td>
+                @Html.LabelFor(model => model.Image)
                 @Html.EditorFor(model => model.Image)
                 @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
             </td>

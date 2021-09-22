@@ -13,41 +13,53 @@
         </div>
     </div>
 </div>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.HPT_ID)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.HPT_ID)
-            </td>
-            <td>
-                @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                @if (Request.IsAuthenticated)
                 {
-                    @: @Html.ActionLink("Edit", "Edit", new { id = item.HeadPhoneType1 }) |
+                    <p>
+                        @Html.ActionLink("Create New", "Create")
+                    </p>
                 }
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.HPT_ID)
+                            </th>
+                            <th></th>
+                        </tr>
 
-                @if (User.IsInRole("Admin") || User.IsInRole("Employee") || User.IsInRole("Customer"))
-                {
-                    @: @Html.ActionLink("Details", "Details", new { id = item.HeadPhoneType1 }) |
-                }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HPT_ID)
+                                </td>
+                                <td>
+                                    @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                                    {
+                                        @: @Html.ActionLink("Edit", "Edit", new { id = item.HeadPhoneType1 }) |
+                                    }
 
-                @if (User.IsInRole("Admin"))
-                {
-                    @: @Html.ActionLink("Delete", "Delete", new { id = item.HeadPhoneType1 })
-                }
+                                    @if (User.IsInRole("Admin") || User.IsInRole("Employee") || User.IsInRole("Customer"))
+                                    {
+                                        @: @Html.ActionLink("Details", "Details", new { id = item.HeadPhoneType1 }) |
+                                    }
 
-            </td>
-        </tr>
-    }
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        @: @Html.ActionLink("Delete", "Delete", new { id = item.HeadPhoneType1 })
+                                    }
 
-</table>
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+        </div>
+    </div>
+</div>

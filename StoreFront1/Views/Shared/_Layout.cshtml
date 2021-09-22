@@ -90,13 +90,36 @@
 
                         @* All *@
                         <li><a href="@Url.Action("Index","Home")" class="smoothscroll">Store</a></li>
-                        <li><a href="@Url.Action("Index","HeadPhoneStores1")" class="smoothscroll">Head Phones</a></li>   @*class="active"*@
+                        @*<li><a href="@Url.Action("Index","HeadPhoneStores1")" class="smoothscroll">Head Phones</a></li>*@   @*class="active"*@
 
                         <li><a href="@Url.Action("Contact","Home")" class="smoothscroll">Contact</a></li>
                         <li><a href="@Url.Action("HeadPhonePaging","Filters")" class="smoothscroll">HeadPhone+</a></li>
 
+
+                        <li>
+                            @{
+                                Dictionary<int, StoreFront1.Models.CartItemViewModel> shoppingCart =
+                                    (Dictionary<int, StoreFront1.Models.CartItemViewModel>)Session["cart"];
+
+
+                                int nbrItems = 0;
+
+                                if (shoppingCart != null)
+                                {
+                                    foreach (var item in shoppingCart)
+                                    {
+                                        nbrItems += item.Value.Qty;
+                                    }
+                                }
+                            }
+
+                            <a href="@Url.Action("Index","ShoppingCart")"><i class="fas fa-cart-arrow-down"></i>@nbrItems</a>
+                        </li>
+
+
+
                         <li class="col-lg-2">
-                            <span class="opener">Welcome!</span>
+                            <span class="opener" id="menu">Welcome!</span>
                             <ul>
 
 
@@ -131,25 +154,7 @@
                             </ul>
                         </li>
 
-                        <li>
-                            @{
-                                Dictionary<int, StoreFront1.Models.CartItemViewModel> shoppingCart =
-                                    (Dictionary<int, StoreFront1.Models.CartItemViewModel>)Session["cart"];
 
-
-                                int nbrItems = 0;
-
-                                if (shoppingCart != null)
-                                {
-                                    foreach (var item in shoppingCart)
-                                    {
-                                        nbrItems += item.Value.Qty;
-                                    }
-                                }
-                            }
-
-                            <a href="@Url.Action("Index","ShoppingCart")"><i class="fas fa-cart-arrow-down"></i>@nbrItems</a>
-                        </li>
 
 
                     </ul>
@@ -172,38 +177,9 @@
             </div>
         </div>
     </div>
+
     @RenderBody()
 
-    @*<div class="navbar navbar-default" role="navigation">*@
-    @*navbar-fixed-top*@
-    <div class="container">
-        <div class="navbar-header">
-            <div id="sidebar" class="container">
-                <div class="row centered">
-                    <nav id="menu">
-                        <ul>
-                            <li class="col-lg-2">
-                                <span class="opener">LINKS</span>
-                                <ul>
-                                    <li><a href="@Url.Action("Index","Accessories")">Accessories</a></li>
-                                    <li><a href="@Url.Action("Index","Speakers")">Speakers</a></li>
-
-                                </ul>
-                            </li>
-                            <li class="col-lg-2"><a href="@Url.Action("Contact","Home")">Help</a></li>
-                            <li class="col-lg-2">1234 SW Whatever St.<br />Blue Springs, MO 64014</li>
-
-                            <li class="col-lg-2"><a href="@Url.Action("Index","Home")"><i class="fas fa-cart-arrow-down"></i></a></li>
-
-                        </ul>
-
-                    </nav>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    @*</div>*@
     <div id="copyrights">
         <div class="container">
             <p>
@@ -228,6 +204,11 @@
     <script src="~/content/lib/jquery/jquery.min.js"></script>
     <script src="~/content/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/content/lib/php-mail-form/validate.js"></script>
+
+    <!--jQuery Plugins-->
+    <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/main.js"></script>
 
 
     <!--jQuery DataTables-->

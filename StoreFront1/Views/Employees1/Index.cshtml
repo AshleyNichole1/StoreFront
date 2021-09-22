@@ -15,113 +15,116 @@
     </div>
 </div>
 
-@if (Request.IsAuthenticated)
-{
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-}
 
 
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HireDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BIrthdate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone_)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Emp_Street)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Adress2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Emp_City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Emp_state)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Emp_zip)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Position.Position1)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HireDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BIrthdate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone_)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Emp_Street)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Adress2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Emp_City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Emp_state)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Emp_zip)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Position.Position1)
-            </td>
-            <td>
-                @if (User.IsInRole("Admin"))
+                @if (Request.IsAuthenticated)
                 {
-                    @:@Html.ActionLink("Edit", "Edit", new { id = item.EmployeeID }) |
+                    <p>
+                        @Html.ActionLink("Create New", "Create")
+                    </p>
                 }
 
-                @if (User.IsInRole("Admin"))
-                {
-                    @:@Html.ActionLink("Details", "Details", new { id = item.EmployeeID }) |
-                }
 
-                @if (User.IsInRole("Admin"))
-                {
-                    @:@Html.ActionLink("Delete", "Delete", new { id = item.EmployeeID })
-                }
 
-            </td>
-        </tr>
-    }
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FirstName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LastName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.HireDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BIrthdate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Phone_)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Emp_Street)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Adress2)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Emp_City)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Emp_state)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Emp_zip)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Position.Position1)
+                        </th>
+                        <th></th>
+                    </tr>
 
-</table>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HireDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BIrthdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Phone_)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Emp_Street)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Adress2)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Emp_City)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Emp_state)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Emp_zip)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Position.Position1)
+                            </td>
+                            <td>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    @:@Html.ActionLink("Edit", "Edit", new { id = item.EmployeeID }) |
+                                }
+
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    @:@Html.ActionLink("Details", "Details", new { id = item.EmployeeID }) |
+                                }
+
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    @:@Html.ActionLink("Delete", "Delete", new { id = item.EmployeeID })
+                                }
+
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+       

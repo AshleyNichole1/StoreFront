@@ -7,22 +7,17 @@
     int totalCountOfItems = 0;
 }
 
-@*<h2>Index</h2>*@
-
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
-
-<p class="text-right">
-    @Html.ActionLink("Back to Store", "Index", "HeadPhoneStores1",null, new { @class = "btn btn-info"})
-</p>
-
-@if (Model.Count == 0)
-{
-    <p class="alert alert-warning">
-        There are no items in your cart
+<div class="container">
+    <p class="text-right">
+        @Html.ActionLink("Back to Store", "Index", "HeadPhoneStores1", null, new { @class = "btn btn-info" })
     </p>
-}
+
+    @if (Model.Count == 0)
+    {
+        <p class="alert alert-warning">
+            There are no items in your cart
+        </p>
+    }
 
     <table class="table">
         <tr>
@@ -84,5 +79,6 @@
         }
 
 
-        }
+        
     </table>
+</div>

@@ -14,41 +14,53 @@
         </div>
     </div>
 </div>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Position1)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Position1)
-            </td>
-            <td>
-                @if (User.IsInRole("Admin"))
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                @if (Request.IsAuthenticated)
                 {
-                    @: @Html.ActionLink("Edit", "Edit", new { id = item.PositionID }) |
+                    <p>
+                        @Html.ActionLink("Create New", "Create")
+                    </p>
                 }
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Position1)
+                            </th>
+                            <th></th>
+                        </tr>
 
-                @if (User.IsInRole("Admin"))
-                {
-                    @: @Html.ActionLink("Details", "Details", new { id = item.PositionID }) |
-                }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Position1)
+                                </td>
+                                <td>
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        @: @Html.ActionLink("Edit", "Edit", new { id = item.PositionID }) |
+                                    }
 
-                @if (User.IsInRole("Admin"))
-                {
-                    @: @Html.ActionLink("Delete", "Delete", new { id = item.PositionID })
-                }
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        @: @Html.ActionLink("Details", "Details", new { id = item.PositionID }) |
+                                    }
 
-            </td>
-        </tr>
-    }
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        @: @Html.ActionLink("Delete", "Delete", new { id = item.PositionID })
+                                    }
 
-</table>
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+        </div>
+    </div>
+</div>

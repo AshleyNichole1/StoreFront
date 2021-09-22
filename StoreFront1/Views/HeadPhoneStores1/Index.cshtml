@@ -16,6 +16,14 @@
 </div>
 
 
+
+
+
+
+
+
+
+
 @if (Request.IsAuthenticated)
 {
     <p class="row">
@@ -201,8 +209,8 @@
             $("#HeadPhoneDetails").data('hpId', $(this).attr('id'))
                 .dialog({
                   
-                    width: 400,
-                    height: 200,
+                    width: 450,
+                    height: 600,
                     open: function () {
                         var headID = $(this).data('hpId');
                         $(this).load("/HeadPhoneStores1/HeadPhoneDetails/" + headID);

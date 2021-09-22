@@ -60,9 +60,9 @@
             @Html.DisplayFor(model => model.isBlueTooth)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Weight)
-        </dt>
+        </dt>*@
 
         <dd>
             @Html.DisplayFor(model => model.Weight)
@@ -126,6 +126,24 @@
 
     </dl>
 </div>
+<p>
+
+    @*<div class="col-md-6">
+        <img src="~/Content/img/@Model.Image" alt="HeadPhone" title="@Model.Image" />
+    </div>*@
+
+
+    @using (Html.BeginForm("AddToCart", "ShoppingCart", new { headPhoneId = Model.HeadPhoneID }, FormMethod.Post, new { @class = "text-center" }))
+    {
+        <span class="label">Quantity: </span>
+        @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width: 50px; display: inline;" })
+        <input type="submit" value="Add to Cart" class="btn btn-primary" />
+
+    }
+</p>
+
+
+
 @*<p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.HeadPhoneID }) |
     @Html.ActionLink("Back to List", "Index")

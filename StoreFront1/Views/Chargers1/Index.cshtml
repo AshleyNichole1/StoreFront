@@ -29,52 +29,60 @@
     </div>
 </div>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Charge_type)
-        </th>
-        <th></th>
-    </tr>
+
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Charge_type)
+                        </th>
+                        <th></th>
+                    </tr>
 
 
-    @if (Request.IsAuthenticated)
-    {
-        <p>
-            @Html.ActionLink("Create New", "Create")
-        </p>
-    }
+                    @if (Request.IsAuthenticated)
+                    {
+                        <p>
+                            @Html.ActionLink("Create New", "Create")
+                        </p>
+                    }
 
 
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Charge_type)
-            </td>
-            <td>
-                @* add @if (User.IsInRole("Admin")){paste the edit action link here} and add a span tag before action link and after | or @: before action link see authors index for example *@
-                @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
-                {
-                    @: @Html.ActionLink("Edit", "Edit", new { id = item.ChargerID }) |
-                }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Charge_type)
+                            </td>
+                            <td>
+                                @* add @if (User.IsInRole("Admin")){paste the edit action link here} and add a span tag before action link and after | or @: before action link see authors index for example *@
+                                @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                                {
+                                    @: @Html.ActionLink("Edit", "Edit", new { id = item.ChargerID }) |
+                                }
 
-                @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
-                {
-                    @: @Html.ActionLink("Details", "Details", new { id = item.ChargerID }) |
-                }
+                                @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                                {
+                                    @: @Html.ActionLink("Details", "Details", new { id = item.ChargerID }) |
+                                }
 
-                @if (User.IsInRole("Admin"))
-                {
-                    @: @Html.ActionLink("Delete", "Delete", new { id = item.ChargerID })
-                }
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    @: @Html.ActionLink("Delete", "Delete", new { id = item.ChargerID })
+                                }
 
-            </td>
-        </tr>
-    }
+                            </td>
+                        </tr>
+                    }
 
-</table>
-
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 @* If we want customers and admins to see details but not anonymous  @if (User.IsInRole("Admin") || User.IsInRole("Customer")) then follow same process of moving details into the {} *@

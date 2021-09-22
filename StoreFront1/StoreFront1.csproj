@@ -220,17 +220,18 @@
     <Content Include="Content\img\BeatBoxDock.jpg" />
     <Content Include="Content\img\BeatsDude.jpg" />
     <Content Include="Content\img\BeatsFlex.jpeg" />
+    <Content Include="Content\img\BeatsFlex.png" />
     <Content Include="Content\img\BeatsIndexPage.jpg" />
     <Content Include="Content\img\BeatsPill.jpg" />
     <Content Include="Content\img\BeatsPill2.0.jpg" />
     <Content Include="Content\img\BeatsPillPlus.jpg" />
-    <Content Include="Content\img\BeatsStudio3.jpg" />
+    <Content Include="Content\img\BeatsStudio3.png" />
     <Content Include="Content\img\Case.jpg" />
     <Content Include="Content\img\Chargers.jpg" />
     <Content Include="Content\img\CleaningKit.jpg" />
     <Content Include="Content\img\contact.jpg" />
     <Content Include="Content\img\EarPads.jpeg" />
-    <Content Include="Content\img\EPOnEars.jpg" />
+    <Content Include="Content\img\EPOnEars.png" />
     <Content Include="Content\img\favicon.png" />
     <Content Include="Content\img\mike-cyr-desx2CnOejk-unsplash.jpg" />
     <Content Include="Content\img\MXJ92.jfif" />
@@ -242,11 +243,13 @@
     <Content Include="Content\img\portfolio\folio05.png" />
     <Content Include="Content\img\portfolio\folio06.png" />
     <Content Include="Content\img\PowerBeats.jpg" />
-    <Content Include="Content\img\PowerBeatsPro.jpg" />
+    <Content Include="Content\img\PowerBeats.png" />
+    <Content Include="Content\img\PowerBeatsPro.png" />
     <Content Include="Content\img\pr01.jpg" />
     <Content Include="Content\img\pr02.jpg" />
     <Content Include="Content\img\SoloPro.png" />
     <Content Include="Content\img\StudioBuds.jpg" />
+    <Content Include="Content\img\StudioBuds.png" />
     <Content Include="Content\img\work.jpg" />
     <Content Include="Content\js\Custom.js" />
     <Content Include="Content\js\main.js" />
@@ -449,6 +452,7 @@
     <Content Include="Views\HeadPhoneStores1\HeadPhoneDetails.cshtml" />
     <Content Include="Views\HeadPhoneStores1\HeadPhoneCreate.cshtml" />
     <Content Include="Views\HeadPhoneStores1\HeadPhoneEdit.cshtml" />
+    <Content Include="Views\Filters\HeadPhoneCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
