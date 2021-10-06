@@ -319,7 +319,7 @@ namespace StoreFront1.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public JsonResult AjaxEdit(HeadPhoneStore headphone)
+        public JsonResult AjaxEdit(HeadPhoneStore headphone, HttpPostedFileBase Image)
         {
 
             HeadPhoneStore originalHeadphone = db.HeadPhoneStores.Find(headphone.HeadPhoneID);
@@ -330,7 +330,7 @@ namespace StoreFront1.Controllers
 
             db.Entry(originalHeadphone).State = EntityState.Modified;
             db.SaveChanges();
-            return Json(headphone);
+            return Json(originalHeadphone);
         }
 
 

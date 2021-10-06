@@ -1,44 +1,54 @@
 ﻿@model StoreFront.Data.EF.HeadPhoneStore
 
 @* AJAX - Step 24 - Update form (modify html, add params to BeginForm()) *@
-@using (Html.BeginForm("AjaxEdit", "HeadPhoneStores1", FormMethod.Post, new { id = "HeadPhoneEditForm" }))
+@using (Html.BeginForm("AjaxEdit", "HeadPhoneStores1", FormMethod.Post, new { id = "HeadPhoneEditForm", enctype = "mulipart/form-data" }))
 {
     @Html.AntiForgeryToken()
+    <div id="main" class="section ">
+        <div class="container">
 
-    <table id="edit">
-        <tr>
-            @Html.HiddenFor(model => model.HeadPhoneID)
-            <td>
-                @Html.LabelFor(model => model.HeadPhoneID)
-                @Html.EditorFor(model => model.HeadPhoneID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.HeadPhoneID, "", new { @class = "text-danger" })
-            </td>
-            <td>
-                @Html.LabelFor(model => model.ColorID)
-                @Html.EditorFor(model => model.ColorID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ColorID, "", new { @class = "text-danger" })
-            </td>
+            <table>
+                <tr>
+                    @Html.HiddenFor(model => model.HeadPhoneID)
+                    <td>
+                        @Html.LabelFor(model => model.Image)
 
-            <td>
-                @Html.LabelFor(model => model.Description)
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </td>
+                        <input type="file" name="Image" />
 
-            <td>
-                @Html.LabelFor(model => model.HeadPhonePrice)
-                @Html.EditorFor(model => model.HeadPhonePrice, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.HeadPhonePrice, "", new { @class = "text-danger" })
-            </td>
-            <td>
-                @Html.LabelFor(model => model.Image)
-                @Html.EditorFor(model => model.Image)
-                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
-            </td>
-            <td>
-                <input type="button" id="saveUpdate" value="Update Publisher" class="btn btn-primary" />
-                @Html.ActionLink("Cancel", "Index", "HeadPhoneStores1", null, new { @class = "btn btn-primary" })
-            </td>
-        </tr>
-    </table>
+                        @*@Html.EditorFor(model => model.Image)
+                            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })*@
+                    </td>
+                    <td>
+                        @Html.LabelFor(model => model.HeadPhonePrice)
+                        @Html.EditorFor(model => model.HeadPhonePrice, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.HeadPhonePrice, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.LabelFor(model => model.Description)
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.LabelFor(model => model.ColorID)
+                        @Html.EditorFor(model => model.ColorID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ColorID, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.LabelFor(model => model.HeadPhoneID)
+                        @Html.EditorFor(model => model.HeadPhoneID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.HeadPhoneID, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.LabelFor(model => model.StockID)
+                        @Html.EditorFor(model => model.StockID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.StockID, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        <input type="button" id="saveUpdate" value="Update" class="btn btn-primary" />
+                        @Html.ActionLink("Cancel", "HeadphonePaging", "Filters", null, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 }

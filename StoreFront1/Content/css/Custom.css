@@ -152,8 +152,9 @@
           display: block;
           padding: 4px;
       }
-     td{
-         padding:20px;
+     td.editWidth, tr, table{
+        margin:10px 10px 10px 10px;
+         width:100%
      }
 
 .zoom {

@@ -128,8 +128,9 @@
 
         <div class="form-group">
             <div class="col-md-1">
-                @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control", placeholder = "Image" } })
-                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                @*@Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control", placeholder = "Image" } })
+                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })*@
+                <input type="file" name="headPhones" />
             </div>
         </div>
 

@@ -6,11 +6,11 @@
     @Html.AntiForgeryToken()
     }
 
-    <div class="form-horizontal">
-        @*<h4>HeadPhoneStore</h4>
-            <hr />*@
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @*<div class="form-group">
+<div class="form-horizontal">
+    @*<h4>HeadPhoneStore</h4>
+        <hr />*@
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @*<div class="form-group">
 
             <div class="col-md-4">
                 @Html.DropDownList("HeadPhoneType", null, htmlAttributes: new { @class = "form-control" })
@@ -18,43 +18,47 @@
             </div>
         </div>*@
 
-        <div class="form-group">
+    <div class="form-group">
 
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.HeadPhonePrice, new { htmlAttributes = new { @class = "form-control", placeholder = "HeadPhonePrice" } })
-                @Html.ValidationMessageFor(model => model.HeadPhonePrice, "", new { @class = "text-danger" })
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.HeadPhonePrice)
+            @Html.EditorFor(model => model.HeadPhonePrice, new { htmlAttributes = new { @class = "form-control", placeholder = "HeadPhonePrice" } })
+            @Html.ValidationMessageFor(model => model.HeadPhonePrice, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        <div>
+            <div class="checkbox">
+                @Html.LabelFor(model => model.isWireless)
+                @Html.EditorFor(model => model.isWireless)
+                @Html.ValidationMessageFor(model => model.isWireless, "", new { @class = "text-danger" })
             </div>
         </div>
+    </div>
 
-        <div class="form-group">
+    <div class="form-group">
 
-            <div class="col-md-4">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.isWireless)
-                    @Html.ValidationMessageFor(model => model.isWireless, "", new { @class = "text-danger" })
-                </div>
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.UnitsSold)
+            @Html.EditorFor(model => model.UnitsSold, new { htmlAttributes = new { @class = "form-control", placeholder = "HeadPhones Sold" } })
+            @Html.ValidationMessageFor(model => model.UnitsSold, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        <div>
+            <div class="checkbox">
+                @Html.LabelFor(model => model.isInOver)
+                @Html.EditorFor(model => model.isInOver)
+                @Html.ValidationMessageFor(model => model.isInOver, "", new { @class = "text-danger" })
             </div>
         </div>
+    </div>
 
-        <div class="form-group">
-
-            <div class="col-md-4>
-                @Html.EditorFor(model => model.UnitsSold, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UnitsSold, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-
-            <div class="col-md-2">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.isInOver)
-                    @Html.ValidationMessageFor(model => model.isInOver, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        @*<div class="form-group">
+    @*<div class="form-group">
 
             <div class="col-md-2">
                 @Html.DropDownList("ColorID", null, htmlAttributes: new { @class = "form-control", placeholder = "ColorID" })
@@ -62,25 +66,27 @@
             </div>
         </div>*@
 
-        <div class="form-group">
+    <div class="form-group">
 
-            <div class="col-md-1">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Description" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        <div class="col-md-8">
+            @Html.LabelFor(model => model.Description)
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Description" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        <div>
+            <div class="checkbox">
+                @Html.LabelFor(model => model.isMic)
+                @Html.EditorFor(model => model.isMic)
+                @Html.ValidationMessageFor(model => model.isMic, "", new { @class = "text-danger" })
             </div>
         </div>
+    </div>
 
-        <div class="form-group">
-
-            <div class="col-md-1">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.isMic)
-                    @Html.ValidationMessageFor(model => model.isMic, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        @*<div class="form-group">
+    @*<div class="form-group">
 
             <div class="col-md-1">
                 @Html.DropDownList("ChargerID", null, htmlAttributes: new { @class = "form-control", placeholder = "ChargerID" })
@@ -88,7 +94,7 @@
             </div>
         </div>*@
 
-        @*<div class="form-group">
+    @*<div class="form-group">
 
             <div class="col-md-1">
                 @Html.DropDownList("ShipperID", null, htmlAttributes: new { @class = "form-control", placeholder = "ShipperID" })
@@ -96,51 +102,65 @@
             </div>
         </div>*@
 
-        <div class="form-group">
-            <div class="col-md-1">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.isBlueTooth)
-                    @Html.ValidationMessageFor(model => model.isBlueTooth, "", new { @class = "text-danger" })
-                </div>
+    <div class="form-group">
+        <div>
+            <div class="checkbox">
+                @Html.LabelFor(model => model.isBlueTooth)
+                @Html.EditorFor(model => model.isBlueTooth)
+                @Html.ValidationMessageFor(model => model.isBlueTooth, "", new { @class = "text-danger" })
             </div>
         </div>
+    </div>
 
-        <div class="form-group">
-            <div class="col-md-1">
-                @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control", placeholder = "Weight" } })
-                @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        <div class="col-md-1">
+            @Html.LabelFor(model => model.Weight)
+            @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control", placeholder = "Weight" } })
+            @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            <div class="col-md-1">
-                @Html.EditorFor(model => model.Sales, new { htmlAttributes = new { @class = "form-control", placeholder = "Sales" } })
-                @Html.ValidationMessageFor(model => model.Sales, "", new { @class = "text-danger" })
-            </div>
+
+    <div class="form-group">
+        <div class="col-md-1">
+            @Html.LabelFor(model => model.ColorID)
+            @Html.EditorFor(model => model.ColorID, new { htmlAttributes = new { @class = "form-control", placeholder = "Color" } })
+            @Html.ValidationMessageFor(model => model.ColorID, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        @*<div class="form-group">
+    <div class="form-group">
+        <div class="col-md-1">
+            @Html.LabelFor(model => model.Sales)
+            @Html.EditorFor(model => model.Sales, new { htmlAttributes = new { @class = "form-control", placeholder = "Sales" } })
+            @Html.ValidationMessageFor(model => model.Sales, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
             <div class="col-md-2">
                 @Html.DropDownList("StockID", null, htmlAttributes: new { @class = "form-control", placeholder = "StockID" })
                 @Html.ValidationMessageFor(model => model.StockID, "", new { @class = "text-danger" })
             </div>
         </div>*@
 
-        <div class="form-group">
-            <div class="col-md-1">
-                @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control", placeholder = "Image" } })
-                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        <div class="col-md-1">
+            @Html.LabelFor(model => model.Image)
+            @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control", placeholder = "Image" } })
+            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-success" />
         </div>
-    </div>    
-}
+    </div>
+</div>    
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+    <div>
+     
+        @Html.ActionLink("Cancel", "HeadPhonePaging", "Filters", null, new { @class = "btn btn-primary" })
+    </div>

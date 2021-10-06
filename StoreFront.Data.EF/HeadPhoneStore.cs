@@ -11,7 +11,7 @@ namespace StoreFront.Data.EF
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class HeadPhoneStore
     {
         public int HeadPhoneID { get; set; }
