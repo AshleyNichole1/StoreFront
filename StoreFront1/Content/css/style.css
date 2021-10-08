@@ -17,13 +17,12 @@
 }
 
 ::selection {
-    background: #16a085;
-    color: #a4003a;
+    background: #400C0C;
+    color: #400C0C;
     text-shadow: none;
 }
-table.dataTable tbody th, table.dataTable tbody td {
-    padding: 20px 20px;
-
+table.dataTable tbody#padding th, table.dataTable tbody#padding td {
+    padding: 8px 0px;
 }
 .btn {
     border: 1px solid;

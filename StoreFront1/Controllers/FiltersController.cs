@@ -61,8 +61,13 @@ namespace StoreFront1.Controllers
 
             ViewBag.SearchString = searchString;
             #endregion
+            ViewBag.ChargerID = new SelectList(db.Chargers, "ChargerID", "Charge_type");
+            ViewBag.ColorID = new SelectList(db.Colors, "ColorID", "Shade");
+            ViewBag.HeadPhoneType = new SelectList(db.HeadPhoneTypes, "HeadPhoneType1", "HPT_ID");
+            ViewBag.ShipperID = new SelectList(db.Shippers, "ShipperID", "ShipperName");
+            ViewBag.StockID = new SelectList(db.Stocks, "StockID", "StockValue");
+            
 
-           
             return View(headphone.ToList());
         }
 

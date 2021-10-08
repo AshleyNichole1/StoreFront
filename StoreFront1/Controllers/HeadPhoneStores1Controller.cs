@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using StoreFront.Data.EF;
 using StoreFront1.Utilities;
 
+
 namespace StoreFront1.Controllers
 {
     //[Authorize]
@@ -289,48 +290,144 @@ namespace StoreFront1.Controllers
 
         }
 
-     
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult HeadPhoneCreate()
+        {
+            ViewBag.ChargerID = new SelectList(db.Chargers, "ChargerID", "Charge_type");
+            ViewBag.ColorID = new SelectList(db.Colors, "ColorID", "Shade");
+            ViewBag.HeadPhoneType = new SelectList(db.HeadPhoneTypes, "HeadPhoneType1", "HPT_ID");
+            ViewBag.ShipperID = new SelectList(db.Shippers, "ShipperID", "ShipperName");
+            ViewBag.StockID = new SelectList(db.Stocks, "StockID", "StockValue");
+            return View();
+        }
+
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public JsonResult AjaxCreate(HeadPhoneStore headPhone)
+        public JsonResult AjaxCreate(HeadPhoneStore headPhone, HttpPostedFileBase headPhoneImage)
         {
-         
-            db.HeadPhoneStores.Add(headPhone);
-            db.SaveChanges();
-            
+            if (ModelState.IsValid)
+            {
+                #region File Upload
+                string file = "noimage.png";
+
+                if (headPhoneImage != null)
+                {
+                    file = headPhoneImage.FileName;
+
+                    string ext = file.Substring(file.LastIndexOf("."));
+
+                    string[] goodExts = { ".jpg", ".jpeg", ".png", ".gif" };
+
+                    if (goodExts.Contains(ext))
+                    {
+                        file = Guid.NewGuid() + ext;
+                        headPhoneImage.SaveAs(Server.MapPath("~/Content/img/") + file);
+                    }
+                    
+                }
+                #endregion
+
+                headPhone.Image = file;
+
+                db.HeadPhoneStores.Add(headPhone);
+                db.SaveChanges();
+                return Json(headPhone);
+            }
+
+            ViewBag.ChargerID = new SelectList(db.Chargers, "ChargerID", "Charge_type");
+            ViewBag.ColorID = new SelectList(db.Colors, "ColorID", "Shade");
+            ViewBag.HeadPhoneType = new SelectList(db.HeadPhoneTypes, "HeadPhoneType1", "HPT_ID");
+            ViewBag.ShipperID = new SelectList(db.Shippers, "ShipperID", "ShipperName");
+            ViewBag.StockID = new SelectList(db.Stocks, "StockID", "StockValue");
+
             return Json(headPhone);
-                  
+
 
         }
 
         //Edit
-       
+
         [HttpGet]
         [Authorize]
         public PartialViewResult HeadPhoneEdit(int id)
         {
             HeadPhoneStore headphone = db.HeadPhoneStores.Find(id);
+
+
+            ViewBag.ChargerID = new SelectList(db.Chargers, "ChargerID", "Charge_type", headphone.ChargerID);
+            ViewBag.ColorID = new SelectList(db.Colors, "ColorID", "Shade", headphone.ColorID);
+            ViewBag.HeadPhoneType = new SelectList(db.HeadPhoneTypes, "HeadPhoneType1", "HPT_ID", headphone.HeadPhoneType);
+            ViewBag.ShipperID = new SelectList(db.Shippers, "ShipperID", "ShipperName", headphone.ShipperID);
+            ViewBag.StockID = new SelectList(db.Stocks, "StockID", "StockValue", headphone.StockID);
+
+
             return PartialView(headphone);
 
         }
 
-        
+
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public JsonResult AjaxEdit(HeadPhoneStore headphone, HttpPostedFileBase Image)
+        public JsonResult AjaxEdit(HeadPhoneStore headphone, HttpPostedFileBase headPhoneImage)
         {
 
-            HeadPhoneStore originalHeadphone = db.HeadPhoneStores.Find(headphone.HeadPhoneID);
-            originalHeadphone.ColorID = headphone.ColorID;
-            originalHeadphone.Description = headphone.Description;
-            originalHeadphone.HeadPhonePrice = headphone.HeadPhonePrice;
-            originalHeadphone.Image = headphone.Image;
 
-            db.Entry(originalHeadphone).State = EntityState.Modified;
-            db.SaveChanges();
-            return Json(originalHeadphone);
+            if (ModelState.IsValid)
+            {
+                #region File Upload
+                string file = "noimage.png";
+
+                if (headPhoneImage != null)
+                {
+                    file = headPhoneImage.FileName;
+
+                    string ext = file.Substring(file.LastIndexOf("."));
+
+                    string[] goodExts = { ".jpg", ".jpeg", ".png", ".gif" };
+
+                    if (goodExts.Contains(ext))
+                    {
+                        file = Guid.NewGuid() + ext;
+                        headPhoneImage.SaveAs(Server.MapPath("~/Content/img/") + file);
+                    }
+
+                }
+                #endregion
+
+                headphone.Image = file;
+
+                db.HeadPhoneStores.Add(headphone);
+                db.SaveChanges();
+                return Json(headphone);
+            }
+
+
+            //HeadPhoneStore originalHeadphone = db.HeadPhoneStores.Find(headphone.HeadPhoneID);
+            //originalHeadphone.ColorID = headphone.ColorID;
+            //originalHeadphone.Description = headphone.Description;
+            //originalHeadphone.HeadPhonePrice = headphone.HeadPhonePrice;
+            //originalHeadphone.Image = headphone.Image;
+
+            //db.Entry(originalHeadphone).State = EntityState.Modified;
+            //db.SaveChanges();
+            //return Json(originalHeadphone);
+
+
+            ViewBag.ChargerID = new SelectList(db.Chargers, "ChargerID", "Charge_type", headphone.ChargerID);
+            ViewBag.ColorID = new SelectList(db.Colors, "ColorID", "Shade", headphone.ColorID);
+            ViewBag.HeadPhoneType = new SelectList(db.HeadPhoneTypes, "HeadPhoneType1", "HPT_ID", headphone.HeadPhoneType);
+            ViewBag.ShipperID = new SelectList(db.Shippers, "ShipperID", "ShipperName", headphone.ShipperID);
+            ViewBag.StockID = new SelectList(db.Stocks, "StockID", "StockValue", headphone.StockID);
+
+
+            return Json(headphone);
+
+
+
         }
 
 

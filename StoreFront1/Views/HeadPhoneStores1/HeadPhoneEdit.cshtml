@@ -1,53 +1,102 @@
 ﻿@model StoreFront.Data.EF.HeadPhoneStore
 
 @* AJAX - Step 24 - Update form (modify html, add params to BeginForm()) *@
-@using (Html.BeginForm("AjaxEdit", "HeadPhoneStores1", FormMethod.Post, new { id = "HeadPhoneEditForm", enctype = "mulipart/form-data" }))
+@using (Html.BeginForm("AjaxEdit", "HeadPhoneStores1", FormMethod.Post, new { id = "HeadPhoneEditForm" , enctype = "multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
     <div id="main" class="section ">
         <div class="container">
 
+
             <table>
-                <tr>
-                    @Html.HiddenFor(model => model.HeadPhoneID)
-                    <td>
-                        @Html.LabelFor(model => model.Image)
+                <tbody id="padding">
+                    <tr>
+                        @Html.HiddenFor(model => model.HeadPhoneID)
+                        <td>
+                            @Html.LabelFor(model => model.Image)
 
-                        <input type="file" name="Image" />
+                            <input type="file" name="headPhoneImage" />
 
-                        @*@Html.EditorFor(model => model.Image)
-                            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })*@
-                    </td>
-                    <td>
-                        @Html.LabelFor(model => model.HeadPhonePrice)
-                        @Html.EditorFor(model => model.HeadPhonePrice, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.HeadPhonePrice, "", new { @class = "text-danger" })
-                    </td>
-                    <td>
-                        @Html.LabelFor(model => model.Description)
-                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                    </td>
-                    <td>
-                        @Html.LabelFor(model => model.ColorID)
-                        @Html.EditorFor(model => model.ColorID, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ColorID, "", new { @class = "text-danger" })
-                    </td>
-                    <td>
-                        @Html.LabelFor(model => model.HeadPhoneID)
-                        @Html.EditorFor(model => model.HeadPhoneID, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.HeadPhoneID, "", new { @class = "text-danger" })
-                    </td>
-                    <td>
-                        @Html.LabelFor(model => model.StockID)
-                        @Html.EditorFor(model => model.StockID, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.StockID, "", new { @class = "text-danger" })
-                    </td>
-                    <td>
-                        <input type="button" id="saveUpdate" value="Update" class="btn btn-primary" />
-                        @Html.ActionLink("Cancel", "HeadphonePaging", "Filters", null, new { @class = "btn btn-primary" })
-                    </td>
-                </tr>
+                            @*@Html.EditorFor(model => model.Image)
+                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })*@
+                        </td>
+
+                        <td>
+                            @Html.LabelFor(model => model.HeadPhonePrice)
+                            @Html.EditorFor(model => model.HeadPhonePrice, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.HeadPhonePrice, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            @*@Html.LabelFor(model => model.isWireless)*@
+                            @Html.HiddenFor(model => model.isWireless)
+                            @Html.ValidationMessageFor(model => model.isWireless, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            @Html.LabelFor(model => model.Description)
+                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            @*@Html.LabelFor(model => model.UnitsSold)*@
+                            @Html.HiddenFor(model => model.UnitsSold, new { htmlAttributes = new { @class = "form-control", placeholder = "HeadPhones Sold" } })
+                            @Html.ValidationMessageFor(model => model.UnitsSold, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            @*@Html.LabelFor(model => model.isInOver)*@
+                            @Html.HiddenFor(model => model.isInOver)
+                            @Html.ValidationMessageFor(model => model.isInOver, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            @Html.LabelFor(model => model.ColorID)
+                            @Html.DropDownList("ColorID", null, htmlAttributes: new { @class = "form-control", placeholder = "ColorID" })
+                            @Html.ValidationMessageFor(model => model.ColorID, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            @*@Html.LabelFor(model => model.isMic)*@
+                            @Html.HiddenFor(model => model.isMic)
+                            @Html.ValidationMessageFor(model => model.isMic, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+
+                            @Html.HiddenFor(model => model.ColorID, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ColorID, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            @Html.LabelFor(model => model.ShipperID)
+                            @Html.DropDownList("ShipperID", null, htmlAttributes: new { @class = "form-control", placeholder = "ShipperID" })
+                            @Html.ValidationMessageFor(model => model.ShipperID, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            @*@Html.LabelFor(model => model.isBlueTooth)*@
+                            @Html.HiddenFor(model => model.isBlueTooth)
+                            @Html.ValidationMessageFor(model => model.isBlueTooth, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            @*@Html.LabelFor(model => model.Sales)*@
+                            @Html.HiddenFor(model => model.Sales, new { htmlAttributes = new { @class = "form-control", placeholder = "Sales" } })
+                            @Html.ValidationMessageFor(model => model.Sales, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            @*@Html.LabelFor(model => model.HeadPhoneID)*@
+                            @Html.HiddenFor(model => model.HeadPhoneID, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.HeadPhoneID, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            @Html.LabelFor(model => model.StockID)
+                            @Html.DropDownList("StockID", null, htmlAttributes: new { @class = "form-control", placeholder = "StockID" })
+                            @Html.ValidationMessageFor(model => model.StockID, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            @Html.LabelFor(model => model.HeadPhoneType1)
+                            @Html.DropDownList("HeadPhoneType", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.HeadPhoneType, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            <input type="button" id="saveUpdate" value="Update" class="btn btn-primary" />
+                            @Html.ActionLink("Cancel", "HeadPhonePaging", "Filters", null, new { @class = "btn btn-primary" })
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>

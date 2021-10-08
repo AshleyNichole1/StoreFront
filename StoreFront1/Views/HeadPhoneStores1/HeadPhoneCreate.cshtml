@@ -1,6 +1,6 @@
 ﻿@model StoreFront.Data.EF.HeadPhoneStore
 
-@using (Html.BeginForm("", "", FormMethod.Post, new { id = "PublisherCreateForm" }))
+@using (Html.BeginForm("", "", FormMethod.Post, new { id = "HeadPhoneCreateForm", enctype = "multipart/form-data" }))
 
 {
     @Html.AntiForgeryToken()
@@ -130,7 +130,7 @@
             <div class="col-md-1">
                 @*@Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control", placeholder = "Image" } })
                 @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })*@
-                <input type="file" name="headPhones" />
+                <input type="file" name="headPhoneImage" />
             </div>
         </div>
 

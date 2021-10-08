@@ -234,6 +234,7 @@
     <Content Include="Content\img\Case.jpg" />
     <Content Include="Content\img\Chargers.jpg" />
     <Content Include="Content\img\CleaningKit.jpg" />
+    <Content Include="Content\img\CloudCore.jpg" />
     <Content Include="Content\img\CloudCore.png" />
     <Content Include="Content\img\contact.jpg" />
     <Content Include="Content\img\CowinSE7.png" />
@@ -245,6 +246,7 @@
     <Content Include="Content\img\GalaxyBuds.png" />
     <Content Include="Content\img\GoogleBuds.png" />
     <Content Include="Content\img\Hesh.png" />
+    <Content Include="Content\img\IndyEvo.jpg" />
     <Content Include="Content\img\Indy_evo.png" />
     <Content Include="Content\img\JBLLive.png" />
     <Content Include="Content\img\JBLReflect.png" />
@@ -252,6 +254,8 @@
     <Content Include="Content\img\JBLX.png" />
     <Content Include="Content\img\Jib.png" />
     <Content Include="Content\img\LogitechPro.png" />
+    <Content Include="Content\img\MainAirPodMax.jpg" />
+    <Content Include="Content\img\MainStudio3.jpg" />
     <Content Include="Content\img\mike-cyr-desx2CnOejk-unsplash.jpg" />
     <Content Include="Content\img\MXJ92.jfif" />
     <Content Include="Content\img\noimage.png" />

@@ -38,7 +38,7 @@
 
 
 
-            <table class="table data-table table-striped ">
+            <table id="HeadPhoneTable" class="table data-table table-striped ">
                 <thead>
                     <tr>
                         <th>
@@ -96,7 +96,7 @@
                                     @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
                                     {
 
-                                        <a href="" class="fa EditLink" id="@item.HeadPhoneID"><i class="fas fa-edit"></i></a>
+                                        <a href="#" class="fa EditLink" id="@item.HeadPhoneID"><i class="fas fa-edit"></i></a>
                                     }
 
                                     <a href="" class="fa DetailsLink" id="@item.HeadPhoneID">
@@ -126,7 +126,7 @@
                                             });*@
 
 
-                                        <a data-ajax="true" data-ajax-confirm="Are you sure you want to delete this item?" data-ajax-failure="deleteFailed" data-ajax-method="POST" data-ajax-success="deleteConfirmed" href="/HeadPhones/AjaxDelete/6" class="fa"><i class="fas fa-trash-alt action-icons" aria-hidden="true"></i></a>
+                                        <a data-ajax="true" data-ajax-confirm="Are you sure you want to delete this item?" data-ajax-failure="deleteFailed" data-ajax-method="POST" data-ajax-success="deleteConfirmed" href="/HeadPhoneStores1/AjaxDelete/@item.HeadPhoneID" class="fa"><i class="fas fa-trash-alt action-icons" aria-hidden="true"></i></a>
 
 
                                     }
@@ -216,14 +216,18 @@
         });
 
 
-        $("#HeadPhoneCreateForm").submit(function (e) {
+        //$("#HeadPhoneCreateForm").submit(function (e) {
+        $(document).on("click", "#save", function (e) { 
             var formData = $(this).serializeArray();
             e.preventDefault();
-
+            console.log("test");
             $.ajax({
-                url: "/HeadPhoneStores/AjaxCreate",
+                url: "/HeadPhoneStores1/AjaxCreate",
                 type: "POST",
-                data: formData,
+                data: new FormData(document.getElementById('HeadPhoneCreateForm')),
+                cache: false,
+                contentType: false,
+                processData: false,
                 dataType: "json",
                 error: function (e) {
                     $("#MessageContent").html("<div class='alert alert-danger'>Error.</div>")
@@ -232,13 +236,13 @@
                     $("#MessageContent").html("<div class='alert alert-success'>Item added!</div>")
                     $("#HeadPhoneCreateForm")[0].reset();
                     $(function () {
-                        var row = '<tr><td>' + head.Sales
-                            + '</td><td>' + head.HeadPhonePrice
-                            + '</td><td>' + head.Description
-                            + '</td><td>' + (head.IsActive ? '<input type="checkbox" disabled="disabled" checked="checked" />' :
-                                '<input type="checkbox" disabled="disabled" />')
-                            + '</td><td>Refresh to view options</td></tr>';
-                        $("#HeadPhoneTable").append(row);
+                        //var row = '<tr><td>' + head.Image
+                        //    + '</td><td>' + head.HeadPhonePrice
+                        //    + '</td><td>' + head.Description
+                        //    + '</td><td>' + head.ColorID
+                        //    + '</td><td>' + head.StockID;
+                        //$("#HeadPhoneTable").append(row);
+                        window.location.reload(true); 
                     });
                 }
             });
@@ -250,7 +254,7 @@
         var originalContent = null;
 
         $("a.EditLink").click(function (e) {
-            e.preventDefault();
+            //e.preventDefault();
             var headphoneID = $(this).attr("id");
 
             var row = $("#HeadPhone-" + headphoneID).children();
@@ -283,33 +287,37 @@
 
                     $('#MessageContent').html("<div class='alert alert-success'>Your Record was Successfully Updated!</div>");
                     $('#HeadPhoneEditForm')[0].reset();
-
+             
                     $(function () {
-                        var row = '<tr><td>' + data.headphoneID +
-                            '</td><td>' + data.Description +
-                            '</td><td>' + data.HeadPhonePrice +
+                        //var row = '<tr><td>' + data.headphoneID +
+                        //    '</td><td>' + data.Description +
+                        //    '</td><td>' + data.HeadPhonePrice +
 
-                            (data.IsActive
-                                ? '<input type="checkbox" disabled="disabled" checked="checked" />'
-                                : '<input type="checkbox" disabled="disabled" />') +
-                            '</td><td>Refresh to view options</td></tr>';
+                        //    (data.IsActive
+                        //        ? '<input type="checkbox" disabled="disabled" checked="checked" />'
+                        //        : '<input type="checkbox" disabled="disabled" />') +
+                        //    '</td><td>Refresh to view options</td></tr>';
 
-                        $('#HeadPhone-' + data.headphoneID).replaceWith(row);
+                        //$('#HeadPhone-' + data.headphoneID).replaceWith(row);
+                        console.log("here");
+                        window.location.reload(true);
+
                     });
 
                 },
                 error: function (e) {
-                    $('#MessageContent').html("<div class='alert alert-warning'>There was an error. Please try again or contact the site administrator.</div>");
-                    $(function () {
-                        var row = '<tr id="HeadPhone-' + originalContent.headId + '"> <td>' +
-                            '</td><td>' +
-                            (originalContent.IsActive
-                                ? '<input type="checkbox" disabled="disabled" checked="checked" />'
-                                : '<input type="checkbox" disabled="disabled" />') +
-                            '</td><td>Refresh to view options</td></tr>';
+                    window.location.reload(true);
+                    //$('#MessageContent').html("<div class='alert alert-warning'>There was an error. Please try again or contact the site administrator.</div>");
+                    //$(function () {
+                    //    var row = '<tr id="HeadPhone-' + originalContent.headId + '"> <td>' +
+                    //        '</td><td>' +
+                    //        (originalContent.IsActive
+                    //            ? '<input type="checkbox" disabled="disabled" checked="checked" />'
+                    //            : '<input type="checkbox" disabled="disabled" />') +
+                    //        '</td><td>Refresh to view options</td></tr>';
 
-                        $('#HeadPhone-' + data.headphoneID).replaceWith(row);
-                    });
+                    //    $('#HeadPhone-' + data.headphoneID).replaceWith(row);  });
+                  
                 }
             });
         });
