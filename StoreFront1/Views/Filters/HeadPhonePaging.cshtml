@@ -254,7 +254,7 @@
         var originalContent = null;
 
         $("a.EditLink").click(function (e) {
-            //e.preventDefault();
+            e.preventDefault();
             var headphoneID = $(this).attr("id");
 
             var row = $("#HeadPhone-" + headphoneID).children();
@@ -281,7 +281,10 @@
             $.ajax({
                 url: "/HeadPhoneStores1/AjaxEdit",
                 type: "POST",
-                data: formData,
+                data: new FormData(document.getElementById('HeadPhoneEditForm')),
+                cache: false,
+                contentType: false,
+                processData: false,
                 dataType: "json",
                 success: function (data) {
 

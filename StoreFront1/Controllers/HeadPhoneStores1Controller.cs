@@ -395,12 +395,14 @@ namespace StoreFront1.Controllers
                         headPhoneImage.SaveAs(Server.MapPath("~/Content/img/") + file);
                     }
 
+                    headphone.Image = file;
+
                 }
                 #endregion
 
-                headphone.Image = file;
 
-                db.HeadPhoneStores.Add(headphone);
+
+                db.Entry(headphone).State = EntityState.Modified;
                 db.SaveChanges();
                 return Json(headphone);
             }
